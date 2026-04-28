@@ -21,7 +21,7 @@ export default function GuestSOS() {
     setResult(null)
     setError(null)
     try {
-      const res = await axios.post("http://127.0.0.1:8000/sos", form)
+      const res = await axios.post("https://crisis-sync.onrender.com/sos", form)
       setResult(res.data)
     } catch (err) {
       setError("Failed to send SOS. Please try again.")

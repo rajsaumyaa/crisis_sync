@@ -9,7 +9,7 @@ export default function StaffDashboard() {
 
   const fetchAlerts = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/alerts")
+      const res = await axios.get("https://crisis-sync.onrender.com/alerts")
       setAlerts(res.data.reverse())
     } catch (err) {
       console.error("Failed to fetch alerts")
@@ -25,7 +25,7 @@ export default function StaffDashboard() {
 
   const resolveAlert = async (id) => {
     try {
-      await axios.patch(`http://127.0.0.1:8000/alerts/${id}/resolve`)
+      await axios.patch(`https://crisis-sync.onrender.com/alerts/${id}/resolve`)
       fetchAlerts()
     } catch (err) {
       console.error("Failed to resolve alert")
@@ -35,7 +35,7 @@ export default function StaffDashboard() {
   const generateReport = async (id) => {
     setReportLoading((prev) => ({ ...prev, [id]: true }))
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/alerts/${id}/report`)
+      const res = await axios.post(`https://crisis-sync.onrender.com/alerts/${id}/report`)
       setReports((prev) => ({ ...prev, [id]: res.data.report }))
     } catch (err) {
       setReports((prev) => ({ ...prev, [id]: "Failed to generate report." }))
